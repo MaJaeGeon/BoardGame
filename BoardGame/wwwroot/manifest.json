@@ -1,0 +1,10 @@
+{
+  "name": "Blazor Wasm BoardGame",
+  "short_name": "BoardGame",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#03173d",
+  "prefer_related_applications": false,
+  "icons": []
+}
