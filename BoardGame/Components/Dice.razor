@@ -1,0 +1,11 @@
+﻿<div class="dice" @onclick="Click"
+style="background-image: url(@dicePath)">
+</div>
+
+@code {
+    private string dicePath { get; set; } = "/images/dice/Dice1.png";
+
+    private void Click() {
+        dicePath = $"/images/dice/Dice{new Random().Next(1, 7)}.png";
+    }
+}

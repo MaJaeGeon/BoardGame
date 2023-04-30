@@ -216,4 +216,15 @@ body {
 						grid-row: 1;
 				}
 		}
+
+		.dice {
+				border: 1px solid #000;
+				border-radius: 5px;
+				margin: 5px;
+				cursor: pointer;
+				background-size: cover;
+				background-position: center;
+				grid-column: 6;
+				grid-row: 4;
+		}
 }
