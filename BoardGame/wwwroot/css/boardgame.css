@@ -18,17 +18,22 @@ body {
 }
 .board .space {
   margin: 0;
-  padding: 0;
+  padding: 5px;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   background-color: lightsalmon;
+  align-items: center;
 }
 .board .space .token {
   background-color: royalblue;
   list-style: none;
   border-radius: 50%;
   width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  text-align: center;
 }
 .board .space:nth-child(1) {
   grid-column: 1;

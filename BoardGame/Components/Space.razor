@@ -1,0 +1,29 @@
+﻿<ul class="space" ondragover="event.preventDefault();" @ondrop="TokenAdded" @ondrag="TokenDeleted">
+    <CascadingValue Value="this">
+    @foreach(var token in Tokens) {
+        <Token TokenModel="token"/>
+    }
+    </CascadingValue>
+</ul>
+
+@code {
+    [CascadingParameter] Board Board { get; set; }
+    [Parameter] public int SpaceId { get; set; }
+
+    List<TokenModel> Tokens = new List<TokenModel>();
+
+    protected override void OnParametersSet() {
+        Tokens.Clear();
+        Tokens.AddRange(Board.Tokens.Where(s => s.SpaceId == SpaceId));
+    }
+
+    private void TokenAdded() {
+        if (Board.Payload == null) return;
+        Tokens.Add(Board.Payload);
+    }
+
+    private void TokenDeleted() {
+        if (Board.Payload == null) return;
+        Tokens.Remove(Board.Payload);
+    }
+}

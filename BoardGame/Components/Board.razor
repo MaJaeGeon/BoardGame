@@ -1,0 +1,12 @@
+﻿<div class="board">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter] public List<TokenModel> Tokens { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    public TokenModel Payload { get; set; }
+}

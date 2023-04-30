@@ -1,0 +1,10 @@
+﻿<li class="token" draggable="true" @ondragstart="() => DragStart(TokenModel)"></li>
+
+@code {
+    [CascadingParameter] Board Board { get; set; }
+    [Parameter] public TokenModel TokenModel { get; set; }
+
+    private void DragStart(TokenModel selectedToken) {
+        Board.Payload = selectedToken;
+    }
+}

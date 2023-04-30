@@ -1,50 +1,21 @@
 ﻿@page "/"
+@using BoardGame.Components;
+@using BoardGame.Models;
 
 <PageTitle>Board Game</PageTitle>
 
-<!--
-    판 : div.board
-    칸 : ul.space
-    말 : li.token
--->
+<Board Tokens="Tokens">
+    @for(int i = 0; i < 36; i++) {
+        <Space SpaceId="i" />
+    }
+</Board>
 
-<div class="board">
-    <ul class="space">
-        <li class="token"></li>
-    </ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-    <ul class="space"></ul>
-</div>
+@code {
+    List<TokenModel> Tokens = new List<TokenModel>();
+
+    protected override void OnInitialized() {
+        Tokens.Add(new TokenModel { Id = 1 , SpaceId = 0});
+        Tokens.Add(new TokenModel { Id = 2 , SpaceId = 0});
+        Tokens.Add(new TokenModel { Id = 3 , SpaceId = 0});
+    }
+}
