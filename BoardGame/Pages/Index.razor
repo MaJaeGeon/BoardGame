@@ -4,20 +4,26 @@
 
 <PageTitle>Board Game</PageTitle>
 
-<Board Tokens="Tokens">
-    @for(int i = 0; i < 36; i++) {
-        <Space SpaceId="i" />
+<Board Spaces="Spaces">
+    @foreach(var space in Spaces) {
+        <Space SpaceModel="space"/>
     }
     <Dice />
 </Board>
 
 
 @code {
-    List<TokenModel> Tokens = new List<TokenModel>();
+    List<SpaceModel> Spaces = new List<SpaceModel>();
 
     protected override void OnInitialized() {
-        Tokens.Add(new TokenModel { Id = 1 , SpaceId = 0});
-        Tokens.Add(new TokenModel { Id = 2 , SpaceId = 0});
-        Tokens.Add(new TokenModel { Id = 3 , SpaceId = 0});
+        Spaces = Enumerable.Range(0, 36).Select((index) => new SpaceModel { 
+            SpaceId = index,
+            Tokens = new List<TokenModel>()
+        }).ToList();
+        Spaces.First().Tokens = new List<TokenModel> {
+            new TokenModel { Id = 1 , SpaceId = 0},
+            new TokenModel { Id = 2 , SpaceId = 0},
+            new TokenModel { Id = 3 , SpaceId = 0}
+        };
     }
 }
