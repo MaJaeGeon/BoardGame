@@ -8,15 +8,28 @@
     @foreach(var space in Spaces) {
         <Space SpaceModel="space"/>
     }
-    <Dice />
 </Board>
+
+<div class="control-panel">
+    <div class="roulette">
+        <div class="spinBtn">spin</div>
+        <div class="wheel">
+            <div class="number" style="--i:1;--clr:#db7093;"><span>1</span></div>
+            <div class="number" style="--i:2;--clr:#20b2aa;"><span>2</span></div>
+            <div class="number" style="--i:3;--clr:#daa520;"><span>3</span></div>
+            <div class="number" style="--i:4;--clr:#ff340f;"><span>4</span></div>
+            <div class="number" style="--i:5;--clr:#3cb371;"><span>5</span></div>
+            <div class="number" style="--i:6;--clr:#4169e1;"><span>6</span></div>
+        </div>
+    </div>
+</div>
 
 
 @code {
     List<SpaceModel> Spaces = new List<SpaceModel>();
 
     protected override void OnInitialized() {
-        Spaces = Enumerable.Range(0, 36).Select((index) => new SpaceModel { 
+        Spaces = Enumerable.Range(0, 48).Select((index) => new SpaceModel { 
             SpaceId = index,
             Tokens = new List<TokenModel>()
         }).ToList();
