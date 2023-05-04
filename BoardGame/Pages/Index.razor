@@ -11,6 +11,11 @@
 </Board>
 
 <div class="control-panel">
+    <div class="token-counter">
+        <input type="range" min="1" max="6" @bind="TokenCount" @onchange="TokenCountChanged" @bind:event="oninput"/>
+        <span>@TokenCount</span>
+    </div>
+
     <div class="roulette">
         <div class="spinBtn">spin</div>
         <div class="wheel">
@@ -27,16 +32,27 @@
 
 @code {
     List<SpaceModel> Spaces = new List<SpaceModel>();
+    List<TokenModel> Tokens = new List<TokenModel>();
+
+    private int TokenCount { get; set; }
 
     protected override void OnInitialized() {
         Spaces = Enumerable.Range(0, 48).Select((index) => new SpaceModel { 
             SpaceId = index,
             Tokens = new List<TokenModel>()
         }).ToList();
-        Spaces.First().Tokens = new List<TokenModel> {
-            new TokenModel { Id = 1 , SpaceId = 0},
-            new TokenModel { Id = 2 , SpaceId = 0},
-            new TokenModel { Id = 3 , SpaceId = 0}
-        };
+    }
+
+    private void UpdateTokens() {
+        Tokens = Enumerable.Range(1, TokenCount).Select(i => {
+            return new TokenModel { Id = i, SpaceId = 0 };
+        }).ToList();
+
+        Spaces.First().Tokens = Tokens;
+    }
+
+    private void TokenCountChanged() {
+        UpdateTokens();
+        StateHasChanged();
     }
 }
