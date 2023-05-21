@@ -1,8 +1,9 @@
-﻿<ul 
+﻿@inject GameManagerService Manager;
+
+<ul 
     class="space @(SpaceModel.IsEventSpace ? "event" : "")"
-    @*style="background: url(@(SpaceModel.QuizPath)) #fff center /contain no-repeat;"*@
 >
-    @foreach (var token in Board.Tokens) {
+    @foreach (var token in Manager.Tokens) {
         if (token.SpaceId == SpaceModel.SpaceId) {
             <li class="token item-@token.Id"></li>
         }

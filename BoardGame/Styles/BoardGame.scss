@@ -15,7 +15,7 @@ body {
 }
 
 .board {
-		display: grid;
+		display: grid; 
 		grid-template-columns: repeat(13, 1fr);
 		grid-template-rows: repeat(7, 1fr);
 		gap: 1vmin;
