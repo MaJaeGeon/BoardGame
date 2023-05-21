@@ -1,28 +1,16 @@
-﻿<ul class="space" ondragover="event.preventDefault();" @ondrop="TokenAdded">
-    <CascadingValue Value="this">
-    @{
-        if (SpaceModel.Tokens != null)  
-            foreach (var token in SpaceModel.Tokens) {
-                <Token TokenModel="token" TokenDelete="TokenDeleted"/>
-            }
+﻿<ul 
+    class="space @(SpaceModel.IsEventSpace ? "event" : "")"
+    @*style="background: url(@(SpaceModel.QuizPath)) #fff center /contain no-repeat;"*@
+>
+    @foreach (var token in Board.Tokens) {
+        if (token.SpaceId == SpaceModel.SpaceId) {
+            <li class="token item-@token.Id"></li>
+        }
     }
-    </CascadingValue>
+
 </ul>
 
 @code {
-    [CascadingParameter] Board Board { get; set; }
     [Parameter] public SpaceModel SpaceModel { get; set; }
-
-    private void TokenAdded() {
-        var match = Board.Spaces.First(x => x == SpaceModel);
-        var token = new TokenModel {
-                Id = Board.Payload.Id,
-                SpaceId = SpaceModel.SpaceId
-            };
-        match.Tokens.Add(token);
-    }
-
-    private void TokenDeleted() {
-        var payloadSpace = Board.Spaces.First(x => x.SpaceId == Board.Payload.SpaceId).Tokens.Remove(Board.Payload);
-    }
+    [CascadingParameter] public Board? Board { get; set; }
 }

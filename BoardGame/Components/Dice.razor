@@ -1,0 +1,50 @@
+﻿<div class="dice" @onclick="RollDice" style="@diceStyle">
+    <div class="face front"></div>
+    <div class="face back"></div>
+    <div class="face top"></div>
+    <div class="face bottom"></div>
+    <div class="face right"></div>
+    <div class="face left"></div>
+</div>
+
+@code {
+    [Parameter] public EventCallback<int> MoveTokenEvent { get; set; }
+
+    private string diceStyle = "";
+
+    async Task RollDice() {
+        diceStyle = "animation: rolling 3s;";
+
+        Random random = new Random((int)DateTime.Now.Ticks);
+        var result = random.Next(1, 7);
+
+        await Task.Delay(2800);
+
+        switch (result) {
+            case 1:
+                diceStyle = "transform: rotateX(0deg) rotateY(0deg);";
+                break;
+            case 2:
+                diceStyle = "transform: rotateX(-90deg) rotateY(0deg);";
+                break;
+            case 3:
+                diceStyle = "transform: rotateX(0deg) rotateY(90deg);";
+                break;
+            case 4:
+                diceStyle = "transform: rotateX(0deg) rotateY(-90deg);";
+                break;
+            case 5:
+                diceStyle = "transform: rotateX(90deg) rotateY(0deg);";
+                break;
+            case 6:
+                diceStyle = "transform: rotateX(180deg) rotateY(0deg);";
+                break;
+            default:
+                break;
+        }
+
+        diceStyle += "animation: none;";
+
+        await MoveTokenEvent.InvokeAsync(result);
+    }
+}
