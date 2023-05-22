@@ -1,0 +1,36 @@
+﻿@inject GameManagerService Manager;
+
+@if (IsOpen) {
+    <div class="modal-body">
+        <div class="modal">
+            @if (Manager.CurrentSpace is QuizSpaceModel quizSpace) {
+                <div class="modal-submit">
+                    <button @onclick="() => {
+                        CloseModal();
+                        Manager.QuizSlove(quizSpace.QuizReward);
+                        quizSpace.IsSloved = true;
+                    }">Success</button>
+                    <button @onclick="CloseModal">Fail</button>
+                </div>
+                <div class="modal-content">
+                    <h2>@quizSpace.QuizReward</h2>
+                    <img src="@quizSpace.QuizPath" />
+                </div>
+            } else
+            {
+                <button @onclick="CloseModal">Close</button>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+
+    private void CloseModal() {
+        Manager.IsRolling = false;
+        IsOpen = false;
+        IsOpenChanged.InvokeAsync(IsOpen);
+    }
+}

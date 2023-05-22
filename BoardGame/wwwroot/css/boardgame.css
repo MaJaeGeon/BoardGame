@@ -355,9 +355,49 @@ body {
   margin: -35px 0 0 -35px;
   box-shadow: 25px 25px, 50px 50px;
 }
+.board .modal-body {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.board .modal-body .modal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #efefef;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.board .modal-body .modal-submit {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.board .modal-body .modal-submit button {
+  background: #198754;
+  padding: 0.8em 1em;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-size: 1em;
+  margin-bottom: 1em;
+  width: 120px;
+}
+.board .modal-body .modal-content img {
+  border-radius: 10px;
+}
 
 @keyframes rolling {
-  50% {
+  100% {
     transform: rotateX(455deg) rotateY(455deg);
   }
 }

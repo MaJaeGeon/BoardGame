@@ -13,6 +13,8 @@
             }
         }
 
+        public int Point { get; set; }
+
         public event Action? SpaceIdChanged;
 
         protected virtual void OnSpaceIdChanged() {
