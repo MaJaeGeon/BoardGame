@@ -1,4 +1,6 @@
-﻿<div class="dice" @onclick="RollDice" style="@diceStyle">
+﻿@inject GameManagerService Manager;
+
+<div class="dice" @onclick="RollDice" style="@diceStyle">
     <div class="face front"></div>
     <div class="face back"></div>
     <div class="face top"></div>

@@ -1,7 +1,8 @@
 ﻿@inject GameManagerService Manager;
 
 <ul 
-    class="space @(SpaceModel.IsEventSpace ? "event" : "")"
+    class="space @(SpaceModel is EventSpaceModel ? "event" : "")"
+    style="@(SpaceModel is QuizSpaceModel quizSpace && quizSpace.IsSloved ? $"background: url({quizSpace.QuizPath}) #fff center/contain no-repeat" : "")"
 >
     @foreach (var token in Manager.Tokens) {
         if (token.SpaceId == SpaceModel.SpaceId) {
@@ -12,6 +13,6 @@
 </ul>
 
 @code {
-    [Parameter] public SpaceModel SpaceModel { get; set; }
+    [Parameter] public ISpaceModel SpaceModel { get; set; }
     [CascadingParameter] public Board? Board { get; set; }
 }
