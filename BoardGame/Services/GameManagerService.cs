@@ -37,8 +37,8 @@ namespace BoardGame.Services {
             // Spaces
             Random random = new Random();
 
-            var quizzes = Enumerable.Range(1, 47).Select(i => new { 
-                Path = $"images/space-bg/{i}.png", 
+            var quizzes = Enumerable.Range(1, 47).Select(i => new {
+                Path = $"images/space-bg/{i}.png",
                 Reword = i switch {
                     <= 5 => 3, // 01~05 파란색
                     >= 6 and <= 17 => 1, // 06~17 초록색
@@ -84,7 +84,7 @@ namespace BoardGame.Services {
             CurrentSpace = Spaces.Find(s => s.SpaceId == CurrentToken.SpaceId);
 
             // 해결된 문제라면 모달을 띄우지 않음.
-            if(CurrentSpace is QuizSpaceModel quizSpace && quizSpace.IsSloved) return;
+            if (CurrentSpace is QuizSpaceModel quizSpace && quizSpace.IsSloved) return;
 
             OpenModal();
         }
