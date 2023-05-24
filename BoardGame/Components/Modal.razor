@@ -9,11 +9,10 @@
                         CloseModal();
                         Manager.QuizSlove(quizSpace.QuizReward);
                         quizSpace.IsSloved = true;
-                    }">Success</button>
-                    <button @onclick="CloseModal">Fail</button>
+                    }">성공</button>
+                    <button @onclick="CloseModal">실패</button>
                 </div>
                 <div class="modal-content">
-                    <h2>@quizSpace.QuizReward</h2>
                     <img src="@quizSpace.QuizPath" />
                 </div>
             } else
@@ -29,7 +28,6 @@
     [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
 
     private void CloseModal() {
-        Manager.IsRolling = false;
         IsOpen = false;
         IsOpenChanged.InvokeAsync(IsOpen);
     }

@@ -38,7 +38,7 @@ namespace BoardGame.Services {
             Random random = new Random();
 
             var quizzes = Enumerable.Range(1, 47).Select(i => new {
-                Path = $"images/space-bg/{i}.png",
+                Path = $"images/quizzes/{i}.png",
                 Reword = i switch {
                     <= 5 => 3, // 01~05 파란색
                     >= 6 and <= 17 => 1, // 06~17 초록색

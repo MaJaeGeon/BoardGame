@@ -51,5 +51,6 @@
         diceStyle += "animation: none;";
 
         await MoveTokenEvent.InvokeAsync(result);
+        Manager.IsRolling = false;
     }
 }
