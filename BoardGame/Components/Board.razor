@@ -10,6 +10,11 @@
 
     <div class="panel">
         <img class="logo" src="/images/logo.png" />
+        <ul class="rank">
+        @foreach (var token in Manager.Tokens.OrderByDescending(t => t.Point)) {
+            <li class="token"><span>@token.Point</span></li>
+        }
+        </ul>
         <Dice MoveTokenEvent="Manager.MoveToken" />
     </div>
     <Modal IsOpen="Manager.IsModalOpen" IsOpenChanged="Manager.UpdateModalState" />
@@ -18,14 +23,15 @@
 @code {
     protected override void OnInitialized() {
         foreach (var token in Manager.Tokens) {
-            token.SpaceIdChanged += HandleTokenSpaceIdChanged;
+            token.SpaceIdChanged += HandleTokenPropertyChanged;
+            token.PointChanged += HandleTokenPropertyChanged;
         }
     }
 
     /// <summary>
-    /// Token의 위치가 변경되었을 때 발생된다.
+    /// Token의 속성이 변경되었을 때 발생된다.
     /// </summary>
-    void HandleTokenSpaceIdChanged() {
-        StateHasChanged();
+    void HandleTokenPropertyChanged() {
+        InvokeAsync(StateHasChanged);
     }
 }
