@@ -395,6 +395,36 @@ body {
 .board .modal-body .modal-content img {
   border-radius: 10px;
 }
+.board .ranking {
+  list-style: none;
+  padding: 0;
+}
+.board .ranking li:before {
+  content: " ";
+  display: inline-block;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+.board .ranking li:before:nth-child(0) {
+  background-color: crimson;
+}
+.board .ranking li:before.item-1 {
+  background-color: orange;
+}
+.board .ranking li:before.item-2 {
+  background-color: yellow;
+}
+.board .ranking li:before.item-3 {
+  background-color: mediumseagreen;
+}
+.board .ranking li:before.item-4 {
+  background-color: cornflowerblue;
+}
+.board .ranking li:before.item-5 {
+  background-color: plum;
+}
 
 @keyframes rolling {
   100% {

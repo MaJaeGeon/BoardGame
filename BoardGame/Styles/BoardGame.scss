@@ -472,7 +472,6 @@ body {
 										width: 120px;
 
 										&:hover {
-
 										}
 								}
 						}
@@ -481,6 +480,44 @@ body {
 								img {
 										border-radius: 10px;
 								}
+						}
+				}
+		}
+
+		.ranking {
+				list-style: none;
+				padding: 0;
+
+				li:before {
+						content: " ";
+						display: inline-block;
+						border-radius: 50%;
+						width: 35px;
+						height: 35px;
+						box-shadow: inset 0 1px 5px rgba(0, 0, 0, .5);
+
+						&:nth-child(0) {
+								background-color: crimson;
+						}
+
+						&.item-1 {
+								background-color: orange;
+						}
+
+						&.item-2 {
+								background-color: yellow;
+						}
+
+						&.item-3 {
+								background-color: mediumseagreen;
+						}
+
+						&.item-4 {
+								background-color: cornflowerblue;
+						}
+
+						&.item-5 {
+								background-color: plum;
 						}
 				}
 		}
