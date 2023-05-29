@@ -12,7 +12,7 @@
         <img class="logo" src="/images/logo.png" />
         <ul class="ranking">
         @foreach (var token in Manager.Tokens.OrderByDescending(t => t.Point)) {
-            <li class="token"><span>@token.Point</span></li>
+                <li><div class="token item-@token.Id"></div><div class="token-point">@token.Point 점</div></li>
         }
         </ul>
         <Dice MoveTokenEvent="Manager.MoveToken" />

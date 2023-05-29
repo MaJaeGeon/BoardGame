@@ -1,27 +1,18 @@
 ﻿@inject GameManagerService Manager;
 
-@if (IsOpen) {
-    <div class="modal-body">
-        <div class="modal">
-            @if (Manager.CurrentSpace is QuizSpaceModel quizSpace) {
-                <div class="modal-submit">
-                    <button @onclick="() => {
-                        CloseModal();
-                        Manager.QuizSlove(quizSpace.QuizReward);
-                        quizSpace.IsSloved = true;
-                    }">성공</button>
-                    <button @onclick="CloseModal">실패</button>
-                </div>
-                <div class="modal-content">
-                    <img src="@quizSpace.QuizPath" />
-                </div>
-            } else
-            {
-                <button @onclick="CloseModal">Close</button>
-            }
+@if (!IsOpen) return;
+
+<div class="modal-body">
+    <div class="modal">
+        <div class="modal-submit">
+            <button @onclick="Manager.QuizSloveSuccess">성공</button>
+            <button @onclick="Manager.QuizSloveFailure">실패</button>
+        </div>
+        <div class="modal-content">
+            <img src="@Manager.CurrentSpace!.Quiz?.QuizPath" />
         </div>
     </div>
-}
+</div>
 
 @code {
     [Parameter] public bool IsOpen { get; set; }

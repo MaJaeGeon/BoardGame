@@ -1,5 +1,55 @@
-﻿* {
+﻿$item-0: crimson;
+$item-1: orange;
+$item-2: yellow;
+$item-3: mediumseagreen;
+$item-4: cornflowerblue;
+$item-5: plum;
+
+@font-face {
+		font-family: 'BMJUA';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+}
+
+@mixin token_style {
+		list-style: none;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		box-shadow: inset 0 1px 5px rgba(0, 0, 0, .5);
+		margin: .2em;
+		border: 2px solid rgba(0,0,0, .3);
+
+		&.item-0 {
+				background-color: $item-0;
+		}
+
+		&.item-1 {
+				background-color: $item-1;
+		}
+
+		&.item-2 {
+				background-color: $item-2;
+		}
+
+		&.item-3 {
+				background-color: $item-3;
+		}
+
+		&.item-4 {
+				background-color: $item-4;
+		}
+
+		&.item-5 {
+				background-color: $item-5;
+		}
+}
+
+
+* {
 		box-sizing: border-box;
+		font-family: "BMJUA";
 }
 
 body {
@@ -11,7 +61,7 @@ body {
 		display: flex;
 		height: 100vh;
 		padding: 2em;
-		background-color: #C3C3C3;
+		background-color: #F2F2F2;
 }
 
 .board {
@@ -28,7 +78,8 @@ body {
 				justify-content: center;
 				align-items: center;
 				flex-wrap: wrap;
-				background: linear-gradient(145deg, #dddbd8, #fff);
+				min-width: 110px;
+				min-height: 110px;
 				border: 5px solid #f6f3f0;
 				border-radius: 10px;
 				box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
@@ -292,37 +343,7 @@ body {
 				}
 
 				.token {
-						list-style: none;
-						border-radius: 50%;
-						width: 35px;
-						height: 35px;
-						box-shadow: inset 0 1px 5px rgba(0, 0, 0, .5);
-						margin: .2em;
-						flex-basis: 1;
-
-						&.item-0 {
-								background-color: crimson;
-						}
-
-						&.item-1 {
-								background-color: orange;
-						}
-
-						&.item-2 {
-								background-color: yellow;
-						}
-
-						&.item-3 {
-								background-color: mediumseagreen;
-						}
-
-						&.item-4 {
-								background-color: cornflowerblue;
-						}
-
-						&.item-5 {
-								background-color: plum;
-						}
+						@include token_style;
 				}
 		}
 
@@ -350,7 +371,7 @@ body {
 								width: 100%;
 								height: 100%;
 								border-radius: 20px;
-								border: 5px solid #f6f3f0;
+								border: 3px solid rgba(0,0,0, .2);
 								transform-style: preserve-3d;
 								background: linear-gradient(145deg, #dddbd8, #fff);
 
@@ -444,6 +465,7 @@ body {
 				padding: 2em;
 				display: flex;
 				justify-content: center;
+				align-items: center;
 				background-color: rgba(0, 0, 0, 0.4);
 
 				.modal {
@@ -458,7 +480,7 @@ body {
 
 						&-submit {
 								display: flex;
-								justify-content: space-around;
+								justify-content: space-between;
 								width: 100%;
 
 								button {
@@ -467,9 +489,9 @@ body {
 										border-radius: 10px;
 										border: none;
 										color: #fff;
-										font-size: 1.5em;
+										font-size: 2em;
 										margin-bottom: 1em;
-										width: 120px;
+										width: 47%;
 
 										&:hover {
 										}
@@ -485,39 +507,25 @@ body {
 		}
 
 		.ranking {
-				list-style: none;
-				padding: 0;
+				margin: 0;
+				padding: 0 2em;
+				display: grid;
+				width: 100%;
+				grid-template-columns: repeat(2, 1fr);
 
-				li:before {
-						content: " ";
-						display: inline-block;
-						border-radius: 50%;
-						width: 35px;
-						height: 35px;
-						box-shadow: inset 0 1px 5px rgba(0, 0, 0, .5);
+				li {
+						list-style: none;
+						display: flex;
+						align-items: center;
+						justify-content: space-evenly;
 
-						&:nth-child(0) {
-								background-color: crimson;
+						.token {
+								@include token_style;
 						}
 
-						&.item-1 {
-								background-color: orange;
-						}
-
-						&.item-2 {
-								background-color: yellow;
-						}
-
-						&.item-3 {
-								background-color: mediumseagreen;
-						}
-
-						&.item-4 {
-								background-color: cornflowerblue;
-						}
-
-						&.item-5 {
-								background-color: plum;
+						.token-point {
+								font-size: 20px;
+								font-weight: bold;
 						}
 				}
 		}

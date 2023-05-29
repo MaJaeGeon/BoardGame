@@ -1,15 +1,19 @@
 ﻿@inject GameManagerService Manager;
 
 @{
-    if(SpaceModel is QuizSpaceModel quizSpace) {
-        var str = quizSpace.IsSloved ? quizSpace.QuizPath : $"images/space-bg/{quizSpace.QuizReward}.png";
-        styles = $"background: url({str}) #fff center/contain no-repeat;";
+    if (SpaceModel.Quiz is CommonQuizModel) {
+        var quizSpace = SpaceModel.Quiz as CommonQuizModel;
+        var str = quizSpace.IsSolve ? quizSpace.QuizPath : $"images/space-bg/{quizSpace.Point}.png";
+        styles = $"background: url({str}) #fff center/cover no-repeat;";
+    } else if (SpaceModel.Quiz is MissionQuizModel) {
+        var quizSpace = SpaceModel.Quiz as MissionQuizModel;
+        var str = quizSpace.IsSolve ? quizSpace.QuizPath : $"images/space-bg/0.png";
+        styles = $"background: url({str}) #fff center/cover no-repeat;";
     }
+
 }
 
-<ul 
-    class="space @(SpaceModel is EventSpaceModel ? "event" : "")" style="@styles"
->
+<ul class=@(SpaceModel.Quiz == null ? "space event" : "space") style="@styles">
     @foreach (var token in Manager.Tokens) {
         if (token.SpaceId == SpaceModel.SpaceId) {
             <li class="token item-@token.Id"></li>
@@ -19,7 +23,7 @@
 </ul>
 
 @code {
-    [Parameter] public ISpaceModel SpaceModel { get; set; }
+    [Parameter] public SpaceModel? SpaceModel { get; set; }
     [CascadingParameter] public Board? Board { get; set; }
     private string styles = "";
 }
