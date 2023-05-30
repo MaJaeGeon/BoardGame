@@ -1,6 +1,6 @@
 ﻿@inject GameManagerService Manager;
 
-@if (!IsOpen) return;
+@if (Manager.IsModalOpen || Manager.CurrentSpace == null) return;
 
 <div class="modal-body">
     <div class="modal">
@@ -15,11 +15,11 @@
 </div>
 
 @code {
-    [Parameter] public bool IsOpen { get; set; }
-    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    //[Parameter] public bool IsOpen { get; set; }
+    //[Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
 
-    private void CloseModal() {
-        IsOpen = false;
-        IsOpenChanged.InvokeAsync(IsOpen);
-    }
+    //private void CloseModal() {
+    //    IsOpen = false;
+    //    IsOpenChanged.InvokeAsync(IsOpen);
+    //}
 }

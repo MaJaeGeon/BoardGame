@@ -12,7 +12,7 @@ namespace BoardGame.Services {
         public bool IsModalOpen { get; set; }
         public bool IsRolling { get; set; }
 
-
+        
         private int order = 0;
         /// <summary>
         /// Token 순서
@@ -116,24 +116,26 @@ namespace BoardGame.Services {
         }
 
         public void QuizSloveSuccess() {
+            //Console.WriteLine($"{CurrentToken.Id} has {CurrentToken.Point} Points!");
 
-            Console.WriteLine($"{CurrentToken.Id} has {CurrentToken.Point} Points!");
+            if(CurrentSpace?.Quiz is MissionQuizModel missionQuizModel) {
+                // Modal창에 퀴즈 정보를 따로 넘겨줘야될 듯.
+            }
+            CloseModal();
         }
 
         public void QuizSloveFailure() {
-        
+            CloseModal();
         }
 
         public void UpdatePoint(int point) {
             CurrentToken.Point += point;
         }
 
-        public void OpenModal() {
-            IsModalOpen = true;
-        }
+        private void OpenModal() => IsModalOpen = true;
 
-        public void UpdateModalState(bool isOpen) {
-            IsModalOpen = isOpen;
-        }
+        private void CloseModal() => IsModalOpen = false;
+
+        public void UpdateModalState(bool isOpen) => IsModalOpen = isOpen;
     }
 }
